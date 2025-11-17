@@ -13,9 +13,7 @@ import { useAuth } from "../context/AuthContext";
 import { clearServerCart, fetchServerCart } from "../features/cart/cartThunks";
 import { useDispatch } from "react-redux";
 
-const stripePromise = loadStripe(
-  "pk_test_51SRrFEHjHmxftfli4EIcdeJULHD0xGsFaD49vwtlNJx3zGwPOH12YJJrRa716fmt4AHHGpV3wj0f9ERwjJL95T4y00m0z3yAF9"
-);
+const stripePromise = loadStripe(import.meta.env.VITE_APP_STRIPE_PUBLIC_KEY);
 
 export default function CheckoutPage() {
   const { darkMode } = useTheme();
@@ -75,7 +73,7 @@ function InnerCheckout({ totalItems, totalPrice, theme, darkMode }) {
 
     const createIntent = async () => {
       try {
-        const res = await fetch("http://localhost:5000/create-payment-intent", {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/create-payment-intent`, {
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
@@ -141,7 +139,7 @@ function InnerCheckout({ totalItems, totalPrice, theme, darkMode }) {
 
   // ---- Helper: create order on backend ----
   const createOrder = async (paymentIntentId) => {
-    const res = await fetch("http://localhost:5000/api/orders/create-order", {
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/orders/create-order`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
