@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 import { store } from '../store';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useDispatch } from 'react-redux';
 import { clearLocal, loadLocalCart } from '../features/cart/cartSlice';
 import { clearServerCart } from '../features/cart/cartThunks';
@@ -35,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (credentials) => {
-    const res = await fetch('http://localhost:5000/api/auth/login', {
+    const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -51,7 +52,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (data) => {
-    const res = await fetch('http://localhost:5000/api/auth/register', {
+    const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -80,7 +81,7 @@ const logout = async () => {
 
   // 3. Logout request
   try {
-    await fetch('http://localhost:5000/api/auth/logout', {
+    await fetch(`${API_BASE_URL}/api/auth/logout`, {
       method: 'POST',
       credentials: 'include',
     });
@@ -97,7 +98,7 @@ const logout = async () => {
 
 // ... (rest of the file unchanged)
   const resetPassword = async (token, password) => {
-    const res = await fetch(`http://localhost:5000/api/auth/reset-password/${token}`, {
+    const res = await fetch(`${API_BASE_URL}/api/auth/reset-password/${token}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
