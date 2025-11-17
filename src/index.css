@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+
+body.loading {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+body.loading::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+#root{
+    height: 100vh;
+}
+
+
+*{
+    transition: all 0.3s ease-in;
+}
