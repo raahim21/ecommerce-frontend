@@ -156,21 +156,7 @@ const Navbar = () => {
                 </div>
               </div>
 
-              {/* Wishlist */}
-              {/* <Link
-                to="/wishlist"
-                className={`relative p-2 ${theme.iconHoverBg} rounded-full transition-all duration-200 group`}
-              >
-                <Heart
-                  className={`w-6 h-6 ${theme.textSecondary} group-hover:text-red-500 transition-colors`}
-                />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium shadow-lg">
-                  3
-                </span>
-              </Link> */}
-
-
-
+              
             <div className="relative group">
   <Link
     to="/wishlist"
