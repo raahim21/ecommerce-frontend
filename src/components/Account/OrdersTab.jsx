@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Loader2, ChevronRight } from 'lucide-react';
 import { useThemeClasses } from '../../hooks/useThemeClasses';
+import toast from 'react-hot-toast';
 
 const API = import.meta.env.VITE_API_BASE_URL;
 
@@ -13,18 +14,27 @@ const OrdersTab = ({ user }) => {
 
   useEffect(() => {
     const fetchOrders = async () => {
+      console.log('hey')
       try {
-        const res = await fetch(`${API}/api/orders`, { credentials: 'include' });
+        const res = await fetch(`${API}/api/orders`, {
+          credentials: 'include',
+        });
+        const data = await res.json();
+        console.log(data)
         if (res.ok) {
-          const data = await res.json();
-          setOrders(data.orders || []);
+          // Filter out soft-deleted orders
+          const activeOrders = (data.orders || []).filter(order => !order.isDeleted);
+          setOrders(activeOrders);
+        } else {
+          toast.error(data.message || 'Failed to load orders');
         }
-      } catch (err) {
-        console.error('Failed to load orders');
+      } catch {
+        toast.error('Network error');
       } finally {
         setLoading(false);
       }
     };
+    
     if (user?._id) fetchOrders();
   }, [user]);
 
