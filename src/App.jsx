@@ -1,156 +1,3 @@
-// // src/App.jsx
-// import React, { useEffect } from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import { useAuth } from './context/AuthContext';
-// import { useCart } from './hooks/useCart';
-// import CartPage from './components/Cart/CartPage';
-// import { Toaster } from 'react-hot-toast';
-// import ProductDetail from './pages/ProductDetail';
-// import AddProduct from './pages/admin/AddProduct'
-
-// // Inside your <Routes>
-
-// // Pages
-// import Home from './pages/Home';
-// // import Shop from './pages/Shop';
-// // import ProductDetail from './pages/ProductDetail';
-// import Confirmation from './pages/Confirmation';
-// import Login from './pages/Login';
-// import Register from './pages/Register';
-
-// // Components
-// import Navbar from './components/Navbar';
-// import FooterSocials from './components/About/FooterSocials'
-// // import Footer from './components/Footer';
-// import ProtectedRoute from './components/ProtectedRoute';
-// import Shop from './pages/Shop';
-// import ForgotPassword from './pages/ForgetPassword';
-// import ResetPassword from './pages/ResetPassword';
-// import Checkout from './pages/checkout';
-// import About from './pages/About';
-// import AccountPage from './pages/Account';
-// import OrderDetailsPage from './pages/OrderDetails';
-
-// const App = () => {
-//   return (
-//     <Router>
-//       <div className="min-h-screen flex flex-col">
-//         <main className="flex-1">
-//           <Routes>
-//             {/* Public Routes */}
-            
-//               <Route path="/product/:id" element={<ProductDetail />} />
-
-//               <Route
-//               path="/shop"
-//               element={
-//                 // <ProtectedRoute>
-//                   <Shop/>
-//                 // </ProtectedRoute>
-//               }
-//               />
-
-//               <Route
-//               path="/about"
-//               element={
-                
-//                   <About/>
-                
-//               }
-//               />
-
-//               <Route  
-//               path='/checkout'
-//               element={
-//                 <Checkout/>
-//               }
-//               />
-//               <Route
-//               index
-//               path="/"
-//               element={
-//                 // <ProtectedRoute>
-//                   <Home/>
-//                 // </ProtectedRoute>
-//               }
-//               />
-
-//             <Route 
-//             path="/account" 
-//             element={
-//               <ProtectedRoute>
-//               <AccountPage />
-//               </ProtectedRoute>
-//             }
-//               />
-
-
-
-//               <Route              
-//               path="/forgot-password"
-//               element={
-//                 // <ProtectedRoute>
-//                   <ForgotPassword/>
-//                 // </ProtectedRoute>
-//               }
-//               />
-//               <Route
-
-//               path="/reset-password/:token"
-//               element={
-//                   <ResetPassword/>
-//               }
-//               />
-
-
-
-//             <Route path="/cart" element={<CartPage />} />
-            
-//             {/* <Route path="/shop" element={<Shop />} /> */}
-//             {/* <Route path="/product/:id" element={<ProductDetail />} /> */}
-//             <Route path="/login" element={<Login />} />
-//             <Route path="/order/:id" element={<OrderDetailsPage />} />
-//             <Route path="/register" element={<Register />} />
-//             <Route path='/verify' element={<Confirmation/>} />
-
-
-//             {/* Admin Routes */}
-//             <Route
-//               path="/admin/add-product"
-//               element={
-//                 <ProtectedRoute>
-//                   <AddProduct/>
-//                 </ProtectedRoute>
-//               }
-//             />
-
-//             {/* 404 */}
-//             {/* <Route path="*" element={<NotFound />} /> */}
-//           </Routes>
-//         </main>
-//         {/* <Footer /> */}
-
-//         <Toaster
-//           position="bottom-right"
-//           toastOptions={{
-//             duration: 3000,
-//             style: {
-//               background: '#363636',
-//               color: '#fff',
-//             },
-//           }}
-//         />
-        
-//       </div>
-//       <FooterSocials/>
-//     </Router>
-//   );
-// };
-
-// export default App;
-
-
-
 
 
 
@@ -197,6 +44,8 @@ import CartPage from './components/Cart/CartPage';
 // Components
 import FooterSocials from './components/About/FooterSocials';
 import ProtectedRoute from './components/ProtectedRoute';
+import ProductForm from './pages/admin/AddProduct';
+import OrdersList from './pages/admin/OrdersList';
 // import CartPage from './components/Cart/CartPage'; // (you had it imported twice, cleaned up)
 
 // Optional: If you want a dedicated NotFound page later
@@ -222,6 +71,7 @@ const AppContent = () => {
           <Route path="/reset-password/:token" element={<ResetPassword />} /> */}
           {/* <Route path="/verify" element={<Confirmation />} /> */}
           <Route path="/order/:id" element={<OrderDetailsPage />} />
+          <Route path="admin/orders" element={<OrdersList />} />
 
           {/* Protected Routes */}
           <Route
@@ -232,6 +82,8 @@ const AppContent = () => {
               </ProtectedRoute>
             }
           />
+
+          
 
 
                   <Route
@@ -245,11 +97,21 @@ const AppContent = () => {
         <Route
           path="/admin/products"
           element={
-            <ProtectedRoute requireAdmin>
+            <ProtectedRoute >
               <ProductsList />
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/admin/edit-product/:id"
+          element={
+            <ProtectedRoute>
+              <ProductForm />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route path="" element={} /> optional cleaner URL */}
 
           {/* Admin Routes */}
           <Route

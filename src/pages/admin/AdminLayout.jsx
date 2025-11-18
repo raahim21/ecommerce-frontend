@@ -11,6 +11,8 @@ const AdminLayout = ({ children }) => {
   const { user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+
+  
   const navItems = [
     { name: 'Dashboard', path: '/admin' },
     { name: 'Products', path: '/admin/products' },
