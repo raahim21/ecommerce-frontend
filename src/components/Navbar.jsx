@@ -64,6 +64,7 @@ const Navbar = () => {
     { name: 'Home', href: '/' },
     { name: 'Shop', href: '/shop' },
     { name: 'About', href: '/about' },
+    user?.role == 'admin' && { name: 'Admin', href: '/admin' },
   ];
 
   const toggleMobileMenu = () => setIsMobileMenuOpen((p) => !p);
