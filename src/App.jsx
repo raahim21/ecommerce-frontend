@@ -218,9 +218,9 @@ const AppContent = () => {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} />
-          <Route path="/verify" element={<Confirmation />} />
+          {/* <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} /> */}
+          {/* <Route path="/verify" element={<Confirmation />} /> */}
           <Route path="/order/:id" element={<OrderDetailsPage />} />
 
           {/* Protected Routes */}

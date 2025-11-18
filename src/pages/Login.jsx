@@ -70,11 +70,11 @@ export default function Login() {
               required
               className={`w-full px-4 py-3 rounded-xl focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition ${inputBg}`}
             />
-            <div className="text-right mt-2">
+            {/* <div className="text-right mt-2">
               <Link to="/forgot-password" className={`text-sm font-medium hover:underline ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
                 Forgot Password?
               </Link>
-            </div>
+            </div> */}
           </div>
           <button
             type="submit"
